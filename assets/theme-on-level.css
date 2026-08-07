@@ -1,0 +1,7 @@
+/* On-Level track theme - indigo/violet. Load AFTER style.css. */
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4338ca;
+  --primary-bg: #eef2ff;
+  --primary-light: #8b5cf6;
+}
