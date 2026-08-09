@@ -61,12 +61,57 @@
   </aside>
   <main class="content">
     <p class="eyebrow">Vocabulary Game</p>
-    <h1 class="page-title">Coming soon &#128679;</h1>
-    <div class="coming-soon">
-      <span class="card-icon">&#127918;</span>
-      Flashcards and a matching game for every unit's vocabulary &mdash; being built next.
+    <h1 class="page-title">Pick a game</h1>
+
+    <div class="vocab-screen" id="vocab-screen-games">
+      <div class="game-grid">
+        <button type="button" class="game-card" data-game="flashcards">
+          <span class="game-card-icon">&#127183;</span>
+          <h3>Flashcards</h3>
+          <p>Flip through terms. Mark each one Got It or Study More &mdash; misses come back around.</p>
+        </button>
+        <button type="button" class="game-card" data-game="matching">
+          <span class="game-card-icon">&#129513;</span>
+          <h3>Matching</h3>
+          <p>Classic memory game &mdash; flip two tiles at a time to pair a term with its definition.</p>
+        </button>
+        <button type="button" class="game-card" data-game="quiz">
+          <span class="game-card-icon">&#9889;</span>
+          <h3>Quick Quiz</h3>
+          <p>A term shows up with four possible definitions. Answer fast, build a streak.</p>
+        </button>
+        <button type="button" class="game-card" data-game="typer">
+          <span class="game-card-icon">&#9000;</span>
+          <h3>Term Typer</h3>
+          <p>The definition shows up &mdash; type the term from memory.</p>
+        </button>
+        <button type="button" class="game-card" data-game="blitz">
+          <span class="game-card-icon">&#128377;</span>
+          <h3>Vocab Blitz</h3>
+          <p>Arcade mode &mdash; catch the falling term in the matching bucket before it lands.</p>
+        </button>
+      </div>
     </div>
-    <p><a class="back-link" href="index.html">&larr; Back to Home</a></p>
+
+    <div class="vocab-screen" id="vocab-screen-units" hidden>
+      <button type="button" class="back-link vocab-back" data-back="games">&larr; Change Game</button>
+      <h2 class="section-title" style="margin-top:8px;">Which units?</h2>
+      <p class="lede">Pick one or more &mdash; terms from every unit you check get shuffled together.</p>
+      <label class="unit-check-row unit-check-all"><input type="checkbox" id="vocabSelectAll"> <span>Select All</span></label>
+      <div class="unit-check-list">
+          <label class="unit-check-row"><input type="checkbox" class="unit-check" value="1"> <span>Unit 01 &mdash; Introduction to Functions in Algebra II</span> <span class="unit-check-count">35 terms</span></label>
+      </div>
+      <button type="button" class="btn" id="vocabStartBtn">Start Game &rarr;</button>
+      <p class="vocab-empty-note" id="vocabNoneWarning" hidden>Pick at least one unit first.</p>
+    </div>
+
+    <div class="vocab-screen" id="vocab-screen-play" hidden>
+      <div id="vocabPlayNav" class="vocab-play-nav"></div>
+      <div id="vocabPlayArea"></div>
+    </div>
+
+    <script src="vocab-data.js"></script>
+    <script src="../assets/vocab-game.js" defer></script>
   </main>
 </div>
 
