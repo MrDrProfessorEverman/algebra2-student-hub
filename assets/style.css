@@ -449,6 +449,14 @@ ol.lesson-list li {
 
 .lesson-link:hover { background: var(--primary); color: #fff; text-decoration: none; }
 
+.lesson-link.soon {
+  background: var(--border);
+  color: var(--text-muted);
+  cursor: default;
+}
+
+.lesson-link.soon:hover { background: var(--border); color: var(--text-muted); }
+
 ol.lesson-list li::before {
   content: counter(lesson);
   position: absolute;
@@ -472,18 +480,6 @@ ol.lesson-list li.done { background: var(--green-bg); }
 ol.lesson-list li.done::before { background: var(--green); color: #fff; content: "✓"; }
 ol.lesson-list li.partial { background: var(--amber-bg); }
 ol.lesson-list li.partial::before { background: var(--amber); color: #fff; }
-
-.status-pill {
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 2px 9px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
-li.done .status-pill { background: var(--green); color: #fff; }
-li.partial .status-pill { background: var(--amber); color: #fff; }
-li.todo .status-pill { background: var(--border); color: var(--text-muted); }
 
 .back-link { display: inline-block; margin-top: 8px; font-size: 0.92rem; font-weight: 600; }
 
