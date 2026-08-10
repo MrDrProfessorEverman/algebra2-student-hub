@@ -32,6 +32,13 @@
   --amber-bg: #fef3c7;
   --amber-text: #92400e;
 
+  /* "Not covered yet" on a unit page - deliberately a cleaner, more lemon
+     yellow than --amber (which already means "in progress" elsewhere on
+     this site, e.g. the sidebar's partial-coverage tag) so the two don't
+     read as the same status next to each other. */
+  --pending: #ca8a04;
+  --pending-bg: #fef9c3;
+
   --radius: 16px;
   --radius-sm: 10px;
   --max-width: 1100px;
@@ -417,31 +424,38 @@ ol.lesson-list {
 
 ol.lesson-list li {
   counter-increment: lesson;
-  padding: 10px 14px 10px 44px;
+  padding: 12px 16px 12px 44px;
   position: relative;
   border-radius: var(--radius-sm);
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  margin-bottom: 8px;
 }
 
-.lesson-title { flex: 1 1 auto; }
+.lesson-title { display: block; font-weight: 700; padding-top: 2px; margin-bottom: 10px; }
 
-.lesson-right {
+/* Buttons sit on their own row below the title, separated by a hairline so
+   they read as one clearly-bounded action bar instead of crowding the
+   title on one wrapping line. rgba black works as a divider/separator
+   color on top of every status background (white/green/yellow/amber)
+   without needing a different value per status. */
+.lesson-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
+
+.btn-sep { width: 1px; height: 14px; flex: 0 0 auto; background: rgba(0, 0, 0, 0.14); margin: 0 2px; }
 
 .lesson-link {
   font-size: 0.76rem;
   font-weight: 700;
   color: var(--primary-dark);
   background: var(--primary-bg);
+  border: 1px solid transparent;
   padding: 3px 10px;
   border-radius: 999px;
   white-space: nowrap;
@@ -449,19 +463,23 @@ ol.lesson-list li {
 
 .lesson-link:hover { background: var(--primary); color: #fff; text-decoration: none; }
 
+/* Not-yet-available buttons (warm-up/practice not posted, practice online
+   not built) recede instead of competing for attention with real links -
+   outline only, no fill, so the eye lands on the live buttons first. */
 .lesson-link.soon {
-  background: var(--border);
+  background: transparent;
+  border: 1px dashed var(--border);
   color: var(--text-muted);
   cursor: default;
 }
 
-.lesson-link.soon:hover { background: var(--border); color: var(--text-muted); }
+.lesson-link.soon:hover { background: transparent; color: var(--text-muted); }
 
 ol.lesson-list li::before {
   content: counter(lesson);
   position: absolute;
   left: 10px;
-  top: 8px;
+  top: 12px;
   width: 22px;
   height: 22px;
   border-radius: 50%;
@@ -476,9 +494,13 @@ ol.lesson-list li::before {
 
 ol.lesson-list li:target { box-shadow: 0 0 0 3px var(--primary) inset; scroll-margin-top: 20px; }
 
-ol.lesson-list li.done { background: var(--green-bg); }
+/* Every not-yet-taught lesson gets its own highlight now too (not just
+   done/partial) so the whole list reads by color at a glance: yellow =
+   haven't gotten there, amber = partially covered, green = fully covered. */
+ol.lesson-list li.todo { background: var(--pending-bg); border-color: var(--pending); }
+ol.lesson-list li.done { background: var(--green-bg); border-color: var(--green); }
 ol.lesson-list li.done::before { background: var(--green); color: #fff; content: "✓"; }
-ol.lesson-list li.partial { background: var(--amber-bg); }
+ol.lesson-list li.partial { background: var(--amber-bg); border-color: var(--amber); }
 ol.lesson-list li.partial::before { background: var(--amber); color: #fff; }
 
 .back-link { display: inline-block; margin-top: 8px; font-size: 0.92rem; font-weight: 600; }
