@@ -430,6 +430,11 @@ ul.activity-list li {
    than reusing the per-lesson soon/locked button style alone. */
 .download-box.locked { border-left-color: var(--pending); opacity: 0.85; }
 
+/* Teacher's live OneNote notes - always unlocked (see Build-UnitPage), so it
+   gets the track's own accent color rather than the green "ready download"
+   or amber "locked" treatment used by the combined-PDF box above/below it. */
+.download-box.notebook { border-left-color: var(--primary); }
+
 .btn {
   display: inline-block;
   background: var(--primary);
