@@ -198,6 +198,12 @@ nav.site-nav a.active { color: #fff; border-bottom: 2px solid #fff; padding-bott
 
 details.unit-group { border-bottom: 1px solid var(--border); }
 
+/* A unit with zero taught-log rows yet - not just an individual lesson -
+   dims the whole row so "nothing here has started" reads at a glance
+   before a student even expands it. */
+details.unit-group.locked-unit > .unit-row .unit-icon,
+details.unit-group.locked-unit > .unit-row .unit-label { opacity: 0.6; }
+
 .unit-row {
   display: flex;
   align-items: center;
@@ -233,6 +239,16 @@ details.unit-group[open] > .unit-row .unit-chevron { transform: rotate(180deg); 
   text-transform: uppercase;
 }
 
+.locked-badge {
+  font-size: 0.6rem;
+  background: var(--pending-bg);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 2px 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 ul.lesson-checklist {
   list-style: none;
   margin: 0;
@@ -240,7 +256,8 @@ ul.lesson-checklist {
   font-size: 0.86rem;
 }
 
-ul.lesson-checklist li a {
+ul.lesson-checklist li a,
+ul.lesson-checklist li .lock-label {
   display: flex;
   align-items: flex-start;
   gap: 7px;
@@ -252,6 +269,10 @@ ul.lesson-checklist li a {
 ul.lesson-checklist li a:hover { background: var(--primary-bg); text-decoration: none; }
 
 ul.lesson-checklist li.todo a { color: var(--text-muted); }
+
+/* Locked lessons are a real access gate, not just the muted "todo" color -
+   a plain non-clickable label instead of a link into the unit page. */
+ul.lesson-checklist li.locked .lock-label { color: var(--text-muted); cursor: default; }
 
 ul.lesson-checklist li.current a {
   background: var(--primary-bg);
@@ -403,6 +424,11 @@ ul.activity-list li {
 
 .download-box .label { font-weight: 800; }
 .download-box .sub { color: var(--text-muted); font-size: 0.88rem; }
+
+/* The combined whole-unit PDF is a bigger spoiler than any one lesson link,
+   so it gets its own locked look (amber accent instead of green) rather
+   than reusing the per-lesson soon/locked button style alone. */
+.download-box.locked { border-left-color: var(--pending); opacity: 0.85; }
 
 .btn {
   display: inline-block;
