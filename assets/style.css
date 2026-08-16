@@ -39,6 +39,13 @@
   --pending: #ca8a04;
   --pending-bg: #fef9c3;
 
+  /* "On deck this week" / "not covered in class yet" tags (added 2026-08-16
+     alongside the release-log redesign) - a cool neutral blue reads as
+     "coming up", distinct from green (covered) and amber (in progress). */
+  --blue: #3b82f6;
+  --blue-bg: #dbeafe;
+  --blue-text: #1e40af;
+
   --radius: 16px;
   --radius-sm: 10px;
   --max-width: 1100px;
@@ -369,6 +376,7 @@ ul.activity-list li {
 }
 
 .tag.in-progress { background: var(--amber-bg); color: var(--amber-text); }
+.tag.preview { background: var(--blue-bg); color: var(--blue-text); }
 
 /* ---- quick link cards ---- */
 
