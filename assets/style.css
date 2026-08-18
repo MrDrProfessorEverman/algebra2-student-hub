@@ -277,6 +277,10 @@ ul.lesson-checklist li a:hover { background: var(--primary-bg); text-decoration:
 
 ul.lesson-checklist li.todo a { color: var(--text-muted); }
 
+/* Matches the unit page's ol.lesson-list li.graded treatment - a graded
+   lesson stands out in the sidebar checklist too, not just on its own page. */
+ul.lesson-checklist li.graded a { background: var(--blue-bg); color: var(--blue-text); font-weight: 700; }
+
 /* Locked lessons are a real access gate, not just the muted "todo" color -
    a plain non-clickable label instead of a link into the unit page. */
 ul.lesson-checklist li.locked .lock-label { color: var(--text-muted); cursor: default; }
@@ -541,6 +545,37 @@ ol.lesson-list li.done { background: var(--green-bg); border-color: var(--green)
 ol.lesson-list li.done::before { background: var(--green); color: #fff; content: "✓"; }
 ol.lesson-list li.partial { background: var(--amber-bg); border-color: var(--amber); }
 ol.lesson-list li.partial::before { background: var(--amber); color: #fff; }
+
+/* Online practice currently a graded assignment overrides the normal
+   covered/in-progress color with light blue while the grading window is
+   open - see CLAUDE.md's "mark/unmark graded online practice" workflow.
+   Reuses --blue (already used for the homepage's "on deck this week" tag)
+   rather than adding a third blue - the two never appear in the same list
+   together, so there's no on-page ambiguity about what blue means here. */
+ol.lesson-list li.graded { background: var(--blue-bg); border-color: var(--blue); }
+ol.lesson-list li.graded::before { background: var(--blue); color: #fff; content: "G"; }
+
+/* Small pill next to the lesson title itself, per the teacher's ask for a
+   note "in the heading" - on top of the row turning blue, not instead of it. */
+.graded-badge {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--blue-text);
+  background: #fff;
+  border: 1px solid var(--blue);
+  padding: 1px 8px;
+  border-radius: 999px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* The Practice Online button itself also flips to solid blue when graded -
+   that's the actual link a student is about to click into, not just the
+   row it sits in. */
+.lesson-link.graded { background: var(--blue); color: #fff; border-color: var(--blue); }
+.lesson-link.graded:hover { background: var(--blue-text); }
 
 .back-link { display: inline-block; margin-top: 8px; font-size: 0.92rem; font-weight: 600; }
 
