@@ -46,6 +46,15 @@
   --blue-bg: #dbeafe;
   --blue-text: #1e40af;
 
+  /* "Skipped - not graded" (added 2026-08-23) - a lesson the class ended up
+     not covering at all. Red is deliberately the loudest status on the site:
+     it is the one case where a student could otherwise assume a posted lesson
+     counts for a grade when it does not. See CLAUDE.md's "mark a lesson
+     skipped / not graded" workflow. */
+  --red: #dc2626;
+  --red-bg: #fee2e2;
+  --red-text: #991b1b;
+
   --radius: 16px;
   --radius-sm: 10px;
   --max-width: 1100px;
@@ -280,6 +289,10 @@ ul.lesson-checklist li.todo a { color: var(--text-muted); }
 /* Matches the unit page's ol.lesson-list li.graded treatment - a graded
    lesson stands out in the sidebar checklist too, not just on its own page. */
 ul.lesson-checklist li.graded a { background: var(--blue-bg); color: var(--blue-text); font-weight: 700; }
+
+/* Matches the unit page's ol.lesson-list li.skipped treatment - a skipped
+   lesson reads as skipped from the sidebar too, without opening the unit. */
+ul.lesson-checklist li.skipped a { background: var(--red-bg); color: var(--red-text); font-weight: 700; }
 
 /* Locked lessons are a real access gate, not just the muted "todo" color -
    a plain non-clickable label instead of a link into the unit page. */
@@ -576,6 +589,33 @@ ol.lesson-list li.graded::before { background: var(--blue); color: #fff; content
    row it sits in. */
 .lesson-link.graded { background: var(--blue); color: #fff; border-color: var(--blue); }
 .lesson-link.graded:hover { background: var(--blue-text); }
+
+/* A lesson the class skipped entirely (Coverage: Skipped in the taught log,
+   added 2026-08-23). Red outranks every other row color, including the blue
+   graded state - the two are mutually exclusive by definition, since a
+   skipped lesson is never graded. The row stays fully clickable: skipping a
+   lesson removes the grade, not the reference copy. */
+ol.lesson-list li.skipped { background: var(--red-bg); border-color: var(--red); }
+ol.lesson-list li.skipped::before { background: var(--red); color: #fff; content: "\2715"; }
+
+/* Same pill treatment as .graded-badge, in red - students need the words
+   "Not Graded" spelled out, not just a color they have to decode. */
+.skipped-badge {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--red-text);
+  background: #fff;
+  border: 1px solid var(--red);
+  padding: 1px 8px;
+  border-radius: 999px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Homepage "This Week in Class" and Study Hall card tags. */
+.tag.skipped { background: var(--red-bg); color: var(--red-text); }
 
 .back-link { display: inline-block; margin-top: 8px; font-size: 0.92rem; font-weight: 600; }
 
