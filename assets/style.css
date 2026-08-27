@@ -424,6 +424,17 @@ ul.activity-list li {
 .card h3 { margin: 0 0 6px; font-size: 1.1rem; color: var(--text); font-weight: 800; }
 .card p { margin: 0; color: var(--text-muted); font-size: 0.92rem; }
 
+/* A homepage card with nowhere to link yet (no practice tool wired up for
+   this unit) - recedes instead of being a dead link, same convention as
+   .lesson-link.soon. */
+.card.disabled {
+  border-left-style: dashed;
+  border-left-color: var(--border);
+  cursor: default;
+  opacity: 0.7;
+}
+.card.disabled:hover { transform: none; box-shadow: none; }
+
 /* ---- unit page ---- */
 
 .unit-meta {
@@ -905,6 +916,31 @@ ol.lesson-list li.skipped::before { background: var(--red); color: #fff; content
 .fc-btn-study:hover { background: var(--amber); color: #fff; }
 .fc-btn-know { background: var(--green-bg); color: var(--green-text); }
 .fc-btn-know:hover { background: var(--green); color: #fff; }
+
+/* -- parent function flashcards (added 2026-08-27) --
+   A back face with a graph plus a list of attributes needs real room and
+   left-aligned, smaller text - very different from a single short vocab
+   definition, so this only touches .pf-card's own faces, not every deck's. */
+.fc-card.pf-card { height: auto; min-height: 300px; }
+.fc-card.pf-card .fc-face-back {
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  font-weight: 400;
+  font-size: 0.92rem;
+  overflow-y: auto;
+}
+
+.pf-back { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; width: 100%; }
+.pf-mini-graph { width: 92px; height: 92px; flex: 0 0 auto; }
+.pfAxis { stroke: var(--text-muted); stroke-width: 1.5; }
+.pfCurve { stroke: var(--primary); stroke-width: 3; fill: none; }
+
+.pf-attrs { flex: 1 1 150px; display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; margin: 0; }
+.pf-attrs dt { font-weight: 700; color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.02em; }
+.pf-attrs dd { margin: 0; font-weight: 700; }
+
+.pf-shape { flex: 1 1 100%; margin: 2px 0 0; font-size: 0.85rem; font-style: italic; font-weight: 400; color: var(--text-muted); }
 
 /* -- matching -- */
 
