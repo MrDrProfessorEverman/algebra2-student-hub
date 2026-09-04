@@ -82,6 +82,39 @@ a:hover { text-decoration: underline; }
 
 .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
 
+/* ---- sitewide "new practice site" banner ---- */
+/* Added 2026-09-04, teacher's explicit ask: unmissable, on every page (see
+   Build-NewSiteBanner in tools/lib-hub.ps1), same loud red as --red
+   elsewhere on this site (the "skipped/not graded" color - the one other
+   place this site deliberately shouts). Sits above header.site, not inside
+   it, so it reads as a standalone alert rather than part of the nav. */
+.site-announce { background: var(--red); color: #fff; }
+
+.site-announce .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+}
+
+.site-announce-text { font-weight: 700; font-size: 0.95rem; }
+
+.site-announce-btn {
+  display: inline-block;
+  background: #fff;
+  color: var(--red);
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 8px 18px;
+  border-radius: 999px;
+}
+
+.site-announce-btn:hover { text-decoration: none; opacity: 0.9; }
+
 /* ---- header ---- */
 
 header.site {
@@ -163,6 +196,18 @@ nav.site-nav a.active { color: #fff; border-bottom: 2px solid #fff; padding-bott
   gap: 28px;
   align-items: start;
 }
+
+/* The homepage ships no sidebar (2026-09-02) - the unit/lesson rail belongs on
+   Course Materials, where a student is actually moving between lessons, rather
+   than competing with the five tiles that are the whole point of the landing
+   page. Without this the content would sit in the second grid column with a
+   260px hole beside it. Emitted by build-hub.ps1's Write-Page whenever the
+   sidebar it was handed is empty. */
+.page.no-sidebar { grid-template-columns: 1fr; }
+
+/* ...including under the collapsed-sidebar body class, which a returning
+   student can still be carrying in localStorage from another page. */
+body.sidebar-collapsed .page.no-sidebar { grid-template-columns: 1fr; }
 
 /* ---- sidebar: unit/lesson progress checklist ----
    Two states, toggled by the hamburger at the top - matches a standard

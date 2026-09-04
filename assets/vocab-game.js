@@ -582,7 +582,7 @@
   //
   // Domain/range wording and every attribute value are taken from the same
   // Day 8 master tables Quiz 2's online practice already uses (see
-  // practice-online/v2/worker.js's PF_FAMILIES / genQuiz2Item) - kept as its
+  // practice-online/unit-02-plus/worker-to-algebra2-practice-api.js's PF_FAMILIES / genQuiz2Item) - kept as its
   // own copy here rather than shared code, since this is a static site asset
   // with no build step connecting it to that Worker.
   //
